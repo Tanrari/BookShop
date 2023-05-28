@@ -6,7 +6,12 @@
        http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd">
-
+       http://www.springframework.org/schema/context/spring-context.xsd"
+default-init-method="defaultInit" default-destroy-method="defaultDestroy">
+<!--        default-init-method="defaultInit"-->
     <context:component-scan  base-package="org.example"/>
+    <bean id="idProvider" class="org.example.app.service.IdProvider" scope="prototype"/>
+<!--    init-method="initIdProvider"-->
+<!--    destroy-method="destroyIdProvider"-->
+<!--    />-->
 </beans>
