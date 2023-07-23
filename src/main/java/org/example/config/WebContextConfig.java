@@ -3,12 +3,18 @@ package org.example.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpRequest;
+import org.springframework.http.client.support.HttpRequestWrapper;
+import org.springframework.web.servlet.HttpServletBean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+
+import javax.servlet.http.HttpServletRequest;
 
 @ComponentScan(basePackages = "org.example.web")
 @Configuration
@@ -42,4 +48,7 @@ public class WebContextConfig implements WebMvcConfigurer {
         viewResolver.setOrder(1);
         return viewResolver;
     }
+
+
+
 }
