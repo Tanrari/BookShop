@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
+//1
 @Service
 public class BookService {
     private final ProjectRepository<Book> bookRepo;
@@ -44,7 +44,7 @@ public class BookService {
         return false;
     }
 
-    public boolean removeBookById(String bookIdToRemove) {
+    public boolean removeBookById(Integer bookIdToRemove) {
         if (bookIdToRemove!=null) {
             return bookRepo.removeItemById(bookIdToRemove);
         }
