@@ -16,7 +16,7 @@ import java.util.Set;
 @Configuration
 @ComponentScan(basePackages = "org.example")
 public class AppContextConfig {
-
+//1
     @Bean
     @Scope(value = "prototype")
     public IdProvider provider(){
