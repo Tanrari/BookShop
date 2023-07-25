@@ -1,6 +1,7 @@
 package org.example.web.controllers;
 import org.apache.log4j.Logger;
 import org.example.app.service.BookService;
+import org.example.exceptions.BookShelfLoginException;
 import org.example.validators.FileFieldIsEmpty;
 import org.example.web.dto.Book;
 import org.example.web.dto.BookIdToRemove;
@@ -30,7 +31,6 @@ import java.io.FileOutputStream;
 @Controller
 @RequestMapping(value = "/books")
 @Scope("singleton")
-@Validated
 public class BookShelfController {
     private Logger logger = Logger.getLogger(BookShelfController.class);
     private BookService bookService;
@@ -91,17 +91,16 @@ public class BookShelfController {
     }
 
     @PostMapping("/uploadFile")
-    public String uploadFile(@ModelAttribute("file") @FileFieldIsEmpty UploadFile file, Model model, BindingResult bindingResult) throws Exception {
-        if (bindingResult.hasErrors()) {
+    public String uploadFile(@RequestParam("file") UploadFile file, Model model) throws Exception {
             model.addAttribute("book", new Book());
             model.addAttribute("bookList", bookService.getAllBooks());
-        } else {
             String name = file.getOriginalFilename();
-            byte[] bytes = file.getBytes();
+                       byte[] bytes = file.getBytes();
             String rootPath = System.getProperty("catalina.home");
+        System.out.println(rootPath);
             File dir = new File(rootPath + File.separator + "external_uploads");
             if (!dir.exists()) {
-                dir.mkdir();
+                dir.mkdirs();
             }
             File serverFile = new File(dir.getAbsolutePath() + File.separator + name);
             BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
@@ -110,8 +109,15 @@ public class BookShelfController {
 
             logger.info("new file saved at:" + serverFile.getAbsolutePath());
 
-        }
+//        }
         return "redirect:/books/shelf";
+    }
+
+    @ExceptionHandler({FileNotFoundException.class})
+    public String handleError(Model model){
+//        System.out.println(exception.getMessage());
+        model.addAttribute("errorUpload","File not Load");
+        return "errors/FileNotFound";
     }
 }
 

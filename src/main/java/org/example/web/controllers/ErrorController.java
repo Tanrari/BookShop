@@ -14,5 +14,9 @@ public class ErrorController {
         return "errors/404";
     }
 
+    @GetMapping("/FileNotFound")
+    public String emptyFileError(){
+        return "errors/FileNotFound";
+    }
 
 }

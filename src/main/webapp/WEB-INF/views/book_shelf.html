@@ -38,9 +38,11 @@
             <tr>
                 <td>
                     <input type="text" placeholder="author" th:field="*{author}">
+                    <p th:if="${#fields.hasErrors()}">Write author please</p>
                 </td>
                 <td>
                     <input type="text" placeholder="book_title" th:field="*{title}">
+                    <p th:if="${#fields.hasErrors()}">Write title please</p>
                 </td>
                 <td>
                     <input type="text" placeholder="size (pages)" th:field="*{size}">
@@ -63,9 +65,9 @@
                 <td>
                     <input type="submit" value="remove">
                 </td>
-<!--                <td th:if="${#fields.hasErrors()}">-->
-<!--                    <p>Wrong id or not found</p>-->
-<!--                </td>-->
+                <td th:if="${#fields.hasErrors()}">
+                    <p>Wrong id or not found</p>
+                </td>
             </tr>
         </table>
     </form>
@@ -77,9 +79,7 @@
                 </td>
                 <td>
                     <input type="submit" value="Upload">
-
                 </td>
-
             </tr>
             <tr>
 <!--            <td th:if="${#fields.hasErrors()}">-->

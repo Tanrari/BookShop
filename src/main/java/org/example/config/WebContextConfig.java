@@ -57,9 +57,9 @@ public class WebContextConfig implements WebMvcConfigurer {
         multipartResolver.setMaxUploadSize(-1);
         return multipartResolver;
     }
-    @Bean
-    public MethodValidationPostProcessor methodValidationPostProcessor() {
-        return new MethodValidationPostProcessor();
-    }
+//    @Bean
+//    public MethodValidationPostProcessor methodValidationPostProcessor() {
+//        return new MethodValidationPostProcessor();
+//    }
 
 }

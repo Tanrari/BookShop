@@ -7,10 +7,12 @@ import org.example.web.dto.LoginForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
+
 
 @Controller
 @RequestMapping(value = "/login")
@@ -24,7 +26,7 @@ public class LoginController {
     }
 
     @GetMapping
-    public String login(Model model){
+    public String login(@Valid Model model){
         logger.info("GET /home returns login_page.html ");
         model.addAttribute("loginForm", new LoginForm());
         return "login_page";
@@ -40,12 +42,6 @@ public class LoginController {
             throw  new BookShelfLoginException("invalid username or password");
         }
 
-    }
-
-    @ExceptionHandler({BookShelfLoginException.class})
-    public String handleError(Model model, BookShelfLoginException exception){
-        model.addAttribute("errorMessage",exception.getMessage());
-        return "errors/404";
     }
 
 
