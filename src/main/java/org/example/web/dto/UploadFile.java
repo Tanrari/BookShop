@@ -1,6 +1,4 @@
 package org.example.web.dto;
-import org.example.validators.FileFieldIsEmpty;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;

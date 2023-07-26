@@ -19,4 +19,9 @@ public class ErrorController {
         return "errors/FileNotFound";
     }
 
+    @GetMapping("/BadRegex")
+    public String badRegexError(){
+        return "errors/BadRegex";
+    }
+
 }
